@@ -1,3 +1,6 @@
+from pprint import pprint
+
+
 def find_next_empty(puzzle):
     # finds the next row, col on the puzzle that's not filled yet --> rep with -1
     # return row, col tuple (or (None, None) if there is none)
@@ -85,4 +88,4 @@ if __name__ == '__main__':
         [1, -1, 9,   -1, -1, -1,   2, -1, -1]
     ]
     print(solve_sudoku(example_board))
-    print(example_board)
+    pprint(example_board)
