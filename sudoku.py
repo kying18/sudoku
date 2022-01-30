@@ -20,18 +20,10 @@ def is_valid(puzzle, guess, row, col):
     # for a guess to be valid, then we need to follow the sudoku rules
     # that number must not be repeated in the row, column, or 3x3 square that it appears in
 
-    # let's start with the row
-    row_vals = puzzle[row]
-    if guess in row_vals:
-        return False # if we've repeated, then our guess is not valid!
+    for i in range(1, 9 + 1):
+        if (puzzle[row][i] == guess) or (puzzle[i][col] == guess):
+            return False
 
-    # now the column
-    # col_vals = []
-    # for i in range(9):
-    #     col_vals.append(puzzle[i][col])
-    col_vals = [puzzle[i][col] for i in range(9)]
-    if guess in col_vals:
-        return False
 
     # and then the square
     row_start = (row // 3) * 3 # 10 // 3 = 3, 5 // 3 = 1, 1 // 3 = 0
