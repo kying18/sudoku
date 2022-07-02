@@ -88,4 +88,4 @@ if __name__ == '__main__':
         [1, -1, 9,   -1, -1, -1,   2, -1, -1]
     ]
     print(solve_sudoku(example_board))
-    pprint(example_board)
+    print(example_board)
