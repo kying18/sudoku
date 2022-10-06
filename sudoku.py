@@ -8,7 +8,7 @@ def find_next_empty(puzzle):
     # keep in mind that we are using 0-8 for our indices
     for r in range(9):
         for c in range(9): # range(9) is 0, 1, 2, ... 8
-            if puzzle[r][c] == -1:
+            if puzzle[r][c] == -2 or puzzle[r][c] == 0: # add 0 as exception and change -1 with -2
                 return r, c
 
     return None, None  # if no spaces in the puzzle are empty (-1)
@@ -69,23 +69,25 @@ def solve_sudoku(puzzle):
         
         # step 5: it not valid or if nothing gets returned true, then we need to backtrack and try a new number
         puzzle[row][col] = -1
+        puzzle[row][col] = 0 # can change number 0 with number in range(1,10)
 
     # step 6: if none of the numbers that we try work, then this puzzle is UNSOLVABLE!!
     return False
 
 if __name__ == '__main__':
+    #change -1 to -2 and give some number 0 to example_board
     example_board = [
-        [3, 9, -1,   -1, 5, -1,   -1, -1, -1],
-        [-1, -1, -1,   2, -1, -1,   -1, -1, 5],
-        [-1, -1, -1,   7, 1, 9,   -1, 8, -1],
+        [3, 9, -2,   -2, 5, -2,   -2, -2, -2],
+        [-2, -2, -2,   2, -2, -2,   0, -2, 5],
+        [-2, -2, -2,   7, 1, 9,   -2, 8, -2],
 
-        [-1, 5, -1,   -1, 6, 8,   -1, -1, -1],
-        [2, -1, 6,   -1, -1, 3,   -1, -1, -1],
-        [-1, -1, -1,   -1, -1, -1,   -1, -1, 4],
+        [-2, 5, 0,   0, 6, 8,   -2, -2, -2],
+        [2, -2, 6,   -2, 0, 3,   -2, 0, -2],
+        [-2, -2, -2,   -2, 0, -2,   0, -2, 4],
 
-        [5, -1, -1,   -1, -1, -1,   -1, -1, -1],
-        [6, 7, -1,   1, -1, 5,   -1, 4, -1],
-        [1, -1, 9,   -1, -1, -1,   2, -1, -1]
+        [5, -2, -2,   -2, -2, -2,   -2, -2, -2],
+        [6, 7, -2,   1, -2, 5,   -2, 0, -2],
+        [1, -2, 9,   -2, -2, -2,   2, 0, -2]
     ]
     print(solve_sudoku(example_board))
     pprint(example_board)
